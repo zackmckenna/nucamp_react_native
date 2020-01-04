@@ -1,57 +1,51 @@
-import React, { Component } from 'react'
-import { ScrollView, FlatList, Text, ListItem } from 'react-native'
-import { Card, View } from 'react-native-elements'
-import { PARTNERS } from '../shared/partners'
+import React, { Component } from 'react';
+import { ScrollView, Text, FlatList } from 'react-native';
+import { Card, ListItem } from 'react-native-elements';
+import { PARTNERS } from '../shared/partners';
 
-const Mission = () => {
-  return (
-    <Card>
-      <Text>
-          We present a curated database of the best campsites
-            in the vase woods and back country of the World Wide Web Wilderness.
-            We increase access toi adventure for the public while promoting safe and
-            respectful use of resources.
-      </Text>
-    </Card>
-  )
+const  Mission = ()  => {
+    return (
+        <Card title='Our Mission'>
+            <Text style={{margin: 10}}>
+                We present a curated database of the best campsites in the vast woods and backcountry of the World Wide Web Wilderness. We increase access to adventure for the public while promoting safe and respectful use of resources. The expert wilderness trekkers on our staff personally verify each campsite to make sure that they are up to our standards. We also present a platform for campers to share reviews on campsites they have visited with each other.
+            </Text>
+        </Card>
+    );
 }
 
 class About extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      partners: PARTNERS
+    constructor(props) {
+        super(props);
+        this.state = {
+            partners: PARTNERS
+        };
     }
-  }
-
-  static navigationOptions = {
-    title: 'About Us'
-}
-
-  render() {
-    const renderPartner = ({item}) => {
+    static navigationOptions ={
+        title: 'About Us'
+    };
+    render() {
+        const renderPartner = ({item}) => {
+            return (
+                <ListItem
+                    title={item.name}
+                    subtitle={item.description}
+                    leftAvatar={{source: require('./images/bootstrap-logo.png')}}
+                />
+            );
+        };
         return (
-          <ListItem
-              title={item.name}
-              subtitle={item.description}
-              leftAvatar={{ source: require('./images/bootstrap-logo.png')}}
-          />
-      );
+            <ScrollView>
+                <Mission />
+                <Card
+                    title="Community Partners">
+                    <FlatList
+                        data={this.state.partners}
+                        renderItem={renderPartner}
+                        keyExtractor={item=>item.id.toString()}
+                    />
+                </Card>
+            </ScrollView>
+        );
     }
-
-    return (
-      <ScrollView>
-          <Mission />
-        <Card>
-        {/* <FlatList
-                data={this.state.partners}
-                renderItem={renderPartner}
-                keyExtractor={item => item.id.toString()}
-            /> */}
-        </Card>
-      </ScrollView>
-    )
-  }
 }
-
 export default About;
