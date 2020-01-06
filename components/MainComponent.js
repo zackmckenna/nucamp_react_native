@@ -6,6 +6,7 @@ import About from './AboutComponent'
 import Contact from './ContactComponent'
 import { View, Platform } from 'react-native';
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
+import Expo from 'expo'
 
 const DirectoryNavigator = createStackNavigator(
     {
@@ -97,7 +98,7 @@ class Main extends Component {
         return (
             <View style={{
                 flex: 1,
-                paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight
+                paddingTop: Platform.OS === 'ios' ? 0 : 0
             }}>
                 <MainNavigator />
             </View>
