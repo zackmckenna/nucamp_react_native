@@ -14,13 +14,6 @@ import { connect } from 'react-redux'
 import { fetchCampsites, fetchComments, fetchPromotions,
 fetchPartners } from '../redux/ActionCreators'
 
-const mapDispatchToProps = {
-    fetchCampsites,
-    fetchComments,
-    fetchPartners,
-    fetchPromotions
-};
-
 const DirectoryNavigator = createStackNavigator(
     {
         Directory: {
@@ -230,12 +223,14 @@ const styles = StyleSheet.create({
 });
 
 class Main extends Component {
+
     componentDidMount() {
         this.props.fetchCampsites();
         this.props.fetchComments();
-        this.prop.fetchPromotions();
+        this.props.fetchPromotions();
         this.props.fetchPartners();
     }
+
     render() {
         return (
             <View style={{
@@ -247,5 +242,14 @@ class Main extends Component {
         );
     }
 }
+
+
+const mapDispatchToProps = {
+    fetchCampsites,
+    fetchComments,
+    fetchPartners,
+    fetchPromotions
+};
+
 
 export default connect(null, mapDispatchToProps)(Main);

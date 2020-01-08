@@ -69,7 +69,6 @@ export const addCampsites = campsites => ({
 });
 
 export const fetchPromotions = () => dispatch => {
-
     dispatch(promotionsLoading());
 
     return fetch(baseUrl + 'promotions')
