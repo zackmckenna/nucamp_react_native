@@ -26,7 +26,12 @@ export const commentsFailed = errMess => ({
     payload: errMess
 });
 
-export const addComments = (comments) => ({
+export const addComment = comment => ({
+    type: ActionTypes.ADD_COMMENT,
+    payload: comment
+});
+
+export const addComments = comments => ({
     type: ActionTypes.ADD_COMMENTS,
     payload: comments
 });
@@ -68,6 +73,35 @@ export const addCampsites = campsites => ({
     payload: campsites
 });
 
+
+// export const postComment = (comment) => dispatch => {
+//     console.log('hello')
+//     console.log(comment)
+//     return dispatch(addComment(comment))
+// }
+
+export const postComment = (comment) => {
+    console.log('triggered')
+    console.log(comment)
+}
+
+// export const postComment = ({campsiteId, rating, author, text}) => dispatch => {
+//     console.log('post comment triggered')
+//     const newComment = {
+//         campsiteId,
+//         rating,
+//         author,
+//         text
+//     }
+//     console.log(newComment)
+//     newComment.date = new Date().toISOString()
+//     console.log(newComment.date)
+//     setTimeout(() => {
+//         console.log('hello')
+//         dispatch(addComment(newComment))
+//     }, 2000)
+// }
+
 export const fetchPromotions = () => dispatch => {
     dispatch(promotionsLoading());
 
@@ -106,6 +140,7 @@ export const addPromotions = promotions => ({
 
 export const postFavorite = campsiteId => dispatch => {
     setTimeout(() => {
+        console.log('dispatching ...')
         dispatch(addFavorite(campsiteId));
     }, 2000);
 }
