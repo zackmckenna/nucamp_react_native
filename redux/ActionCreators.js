@@ -26,11 +26,6 @@ export const commentsFailed = errMess => ({
     payload: errMess
 });
 
-export const addComment = comment => ({
-    type: ActionTypes.ADD_COMMENT,
-    payload: comment
-});
-
 export const addComments = comments => ({
     type: ActionTypes.ADD_COMMENTS,
     payload: comments
@@ -80,10 +75,48 @@ export const addCampsites = campsites => ({
 //     return dispatch(addComment(comment))
 // }
 
-export const postComment = (comment) => {
-    console.log('triggered')
-    console.log(comment)
+export const addComment = comment => ({
+    type: ActionTypes.ADD_COMMENT,
+    payload: comment
+});
+
+// export const postComment = (campsiteId, rating, author, text) => {
+//     const newComment = {
+//         campsiteId,
+//         rating,
+//         author,
+//         text
+//     }
+//     newComment.date = new Date().toISOString();
+//     console.log(newComment)
+//     // setTimeout(() => {
+//     //     dispatch(addComment(newComment))
+//     // }, 2000)
+// }
+
+export const postComment = (campsiteId, rating, author, text) => {
+    const newComment = {
+        campsiteId,
+        rating,
+        author,
+        text
+    }
+    newComment.date = new Date().toISOString();
+    console.log(newComment)
+    return (dispatch) => {
+        dispatch({
+            type: 'ADD_COMMENT',
+            payload: newComment
+        })
+    }
 }
+
+// export const postFavorite = campsiteId => dispatch => {
+//     setTimeout(() => {
+//         console.log('dispatching ...')
+//         dispatch(addFavorite(campsiteId));
+//     }, 2000);
+// }
 
 // export const postComment = ({campsiteId, rating, author, text}) => dispatch => {
 //     console.log('post comment triggered')

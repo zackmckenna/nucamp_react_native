@@ -14,10 +14,12 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = {
-    postFavorite: campsiteId => (postFavorite(campsiteId)),
-    postComment: (campsiteId, rating, author, text) => postComment(campsiteId, rating, author, text)
-};
+const mapDispatchToProps = dispatch => {
+    return {
+        postFavorite: campsiteId => dispatch(postFavorite(campsiteId)),
+        postComment: (campsiteId, rating, author, text) => dispatch(postComment(campsiteId, rating, author, text))
+    }
+}
 
 function RenderComments({comments}) {
     const renderCommentItem = ({item}) => {
@@ -100,14 +102,7 @@ class CampsiteInfo extends Component {
     handleComment(campsiteId) {
         console.log('handle comment submitted')
         console.log(campsiteId)
-
-        const newComment = {
-            campsiteId: campsiteId,
-            rating: this.state.rating,
-            author: this.state.author,
-            text: this.state.text
-        }
-        props.postComment(newComment)
+        postComment(campsiteId, this.state.rating, this.state.author, this.state.text)
         this.toggleModal()
     }
 
