@@ -164,7 +164,7 @@ export const postFavorite = campsiteId => dispatch => {
     setTimeout(() => {
         console.log('dispatching ...')
         dispatch(addFavorite(campsiteId));
-    }, 2000);
+    }, 0);
 }
 
 export const addFavorite = campsiteId => ({
