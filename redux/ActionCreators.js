@@ -68,13 +68,6 @@ export const addCampsites = campsites => ({
     payload: campsites
 });
 
-
-// export const postComment = (comment) => dispatch => {
-//     console.log('hello')
-//     console.log(comment)
-//     return dispatch(addComment(comment))
-// }
-
 export const addComment = comment => ({
     type: ActionTypes.ADD_COMMENT,
     payload: comment
@@ -178,6 +171,12 @@ export const addFavorite = campsiteId => ({
     type: ActionTypes.ADD_FAVORITE,
     payload: campsiteId
 })
+
+export const deleteFavorite = campsiteId => ({
+    type: ActionTypes.DELETE_FAVORITE,
+    payload: campsiteId
+})
+
 export const fetchPartners = () => dispatch => {
 
     dispatch(partnersLoading());
