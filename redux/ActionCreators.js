@@ -88,6 +88,7 @@ export const addComment = comment => ({
 // }
 
 export const postComment = (campsiteId, rating, author, text) => dispatch => {
+    console.log('test', campsiteId)
     const newComment = {
         campsiteId,
         rating,
@@ -96,8 +97,9 @@ export const postComment = (campsiteId, rating, author, text) => dispatch => {
     }
     newComment.date = new Date().toISOString();
     setTimeout(() => {
+        console.log('In timeout:', newComment)
         dispatch(addComment(newComment))
-    }, 2000)
+    }, 0)
 }
 
 // export const postFavorite = campsiteId => dispatch => {

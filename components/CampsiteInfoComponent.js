@@ -14,11 +14,9 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        postFavorite: campsiteId => dispatch(postFavorite(campsiteId)),
-        postComment: (campsiteId, rating, author, text) => dispatch(postComment(campsiteId, rating, author, text))
-    }
+const mapDispatchToProps = {
+        postFavorite: campsiteId => postFavorite(campsiteId),
+        postComment: (campsiteId, rating, author, text) => postComment(campsiteId, rating, author, text)
 }
 
 function RenderComments({comments}) {
@@ -56,6 +54,7 @@ function RenderCampsite(props) {
     console.log(handleViewRef)
 
     const recognizeDrag = ({dx}) => (dx < -200) ? true : false;
+    const recognizeComment = ({dx}) => (dx > 200) ? true : false;
 
     const panResponder =  PanResponder.create({
         onStartShouldSetPanResponder: () => true,
@@ -83,6 +82,8 @@ function RenderCampsite(props) {
                     ],
                     { cancelable: false }
                 )
+            } else if (recognizeComment(gestureState)) {
+                props.onShowModal()
             }
         }
     })
