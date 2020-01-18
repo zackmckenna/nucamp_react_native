@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, StyleSheet, Picker, Switch, Button, Modal } from 'react-native';
+import { Text, View, Alert, StyleSheet, Picker, Switch, Button, Modal } from 'react-native';
 import DatePicker from 'react-native-datepicker';
+import  * as Animatable from 'react-native-animatable'
 
 class Reservation extends Component {
 
@@ -43,8 +44,8 @@ class Reservation extends Component {
 
     render() {
         return (
-            <ScrollView>
-              <Modal
+            <Animatable.View animation='zoomIn' duration={2000} delay={1000}>
+              {/* <Modal
                     animationType={'slide'}
                     transparent={false}
                     visible={this.state.showModal}
@@ -63,7 +64,7 @@ class Reservation extends Component {
                             title='Close'
                         />
                     </View>
-                </Modal>
+                </Modal> */}
                 <View style={styles.formRow}>
                     <Text style={styles.formLabel}>Number of Campers</Text>
                     <Picker
@@ -114,13 +115,32 @@ class Reservation extends Component {
                 </View>
                 <View style={styles.formRow}>
                     <Button
-                        onPress={() => this.handleReservation()}
+                        onPress={() => {
+                            this.handleReservation()
+                            Alert.alert(
+                                'Begin Search?',
+                                `Number of Campers: ${this.state.campers}\n\nHike-In: ${this.state.hikeIn}\n\nDate: ${this.state.date}`
+                                ,
+                                // `Date: ${this.state.date}`,
+                                [
+                                  {
+                                    text: 'Cancel',
+                                    onPress: () => console.log('cancel'),
+                                    style: 'cancel'
+                                  },
+                                  {
+                                    text: 'OK',
+                                    onPress: () => console.log('Ok')
+                                  }
+                                ],
+                                { cancelable: false }
+                              )}}
                         title='Search'
                         color='#5637DD'
                         accessibilityLabel='Tap me to search for available campsites to reserve'
                     />
                 </View>
-            </ScrollView>
+            </Animatable.View>
         );
     }
 }

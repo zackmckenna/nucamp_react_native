@@ -52,8 +52,8 @@ function RenderComments({comments}) {
 function RenderCampsite(props) {
 
     const { campsite } = props
-
-    handleViewRef = ref => this.view = ref
+    handleViewRef = ref => this.view = ref;
+    console.log(handleViewRef)
 
     const recognizeDrag = ({dx}) => (dx < -200) ? true : false;
 
@@ -88,6 +88,7 @@ function RenderCampsite(props) {
     })
 
     if (campsite) {
+
         return (
             <Animatable.View
             animation='fadeInDown'
