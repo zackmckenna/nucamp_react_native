@@ -100,7 +100,7 @@ export const postComment = (campsiteId, rating, author, text) => dispatch => {
         console.log('In timeout:', newComment)
         dispatch(addComment(newComment))
     }, 0)
-}
+};
 
 // export const postFavorite = campsiteId => dispatch => {
 //     setTimeout(() => {
